@@ -1,0 +1,37 @@
+<table mat-table [dataSource]="productDetails" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Product Name">
+    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.productPrice}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Product Description">
+    <th mat-header-cell *matHeaderCellDef> Product Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.productDescription}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Product Category">
+    <th mat-header-cell *matHeaderCellDef> Product Category </th>
+    <td mat-cell *matCellDef="let element"> {{element.productCategory}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Product SubCategory">
+    <th mat-header-cell *matHeaderCellDef> Product SubCategory </th>
+    <td mat-cell *matCellDef="let element"> {{element.productSubCategory}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
