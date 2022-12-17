@@ -8,15 +8,13 @@ import {Injectable} from "@angular/core";
 export class AuthInterceptor implements HttpInterceptor{
   constructor(private userAuthService:UserAuthService, private router:Router) {
   }
-  // @ts-ignore
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (req.headers.get('No-Auth') === 'True') {
       return next.handle(req.clone());
     }
-    const token =this.userAuthService.getToken()
+    const token =this.userAuthService.getToken() || "no token"
 
-    // @ts-ignore
       req =  this.addToken(req,token);
 
     return next.handle(req).pipe(

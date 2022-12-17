@@ -13,10 +13,10 @@ const routes: Routes = [
   {path: '',component:HomeComponent },
   {path: 'admin',component:AdminComponent , canActivate:[AuthGuard], data:{roles:['Admin']} },
   {path: 'user',component:UserComponent , canActivate:[AuthGuard], data:{roles:['User']} },
-  {path: 'login',component:LoginComponent , canActivate:[AuthGuard], data:{roles:['Admin']} },
+  {path: 'login',component:LoginComponent  },
   {path: 'forbidden',component:ForbiddenComponent },
   {path:'addNewProduct',component:AddNewProductComponent},
-  {path:'showProductDetails',component:ShowProductDetailsComponent}
+  {path:'showProductDetails',component:ShowProductDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']}}
 
 
 ];

@@ -9,6 +9,8 @@ import {UserService} from "../_services/user.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
+
+  // isLoggedInFlag : boolean = false ;
   constructor(
     private userAuthService:UserAuthService,
     private router:Router,
@@ -18,9 +20,10 @@ export class HeaderComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  public isLoggedIn(){
+  public isLoggedIn() {
     return this.userAuthService.isLoggedIn();
   }
+
   public logout(){
     this.userAuthService.clear();
     this.router.navigate(['/'])
@@ -30,5 +33,8 @@ export class HeaderComponent implements OnInit{
   }
   public isUser(){
    return  this.userAuthService.isUser();
+  }
+  public check(){
+    console.log("working")
   }
 }

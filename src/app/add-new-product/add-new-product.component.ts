@@ -53,21 +53,22 @@ export class AddNewProductComponent implements OnInit{
     return formData;
   }
 
-  onFileSelected(event: Event) {
-    // @ts-ignore
-    if(event.target.files){
-      // @ts-ignore
-     const file = event.target.files[0];
-
-     const fileHandle: FileHandle ={
-       file:file,
-       url: this.sanitizer.bypassSecurityTrustUrl(
-         window.URL.createObjectURL(file)
-       )
-     }
-     this.product.productImages.push(fileHandle);
-    }
-  }
+  // onFileSelected(event: Event | null) {
+  //   if(event.target.files){
+  //    const file = event.target.files[0];
+  //
+  //    const fileHandle: FileHandle ={
+  //      file:file,
+  //      url: this.sanitizer.bypassSecurityTrustUrl(
+  //        window.URL.createObjectURL(file)
+  //      )
+  //    }
+  //    this.product.productImages.push(fileHandle);
+  //   }
+  //   else {
+  //     alert("wrong file")
+  //   }
+  // }
 
   removeImages(i: number) {
     this.product.productImages.splice(i,1)

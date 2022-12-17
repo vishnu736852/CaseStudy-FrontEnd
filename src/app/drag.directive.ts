@@ -27,12 +27,10 @@ export class DragDirective {
     evt.preventDefault();
     evt.stopPropagation();
     this.background="#eee";
-    // @ts-ignore
-    let fileHandle:FileHandle =null;
-    // @ts-ignore
-    const file = evt.dataTransfer.files[0];
-    const url= this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
-    fileHandle ={file,url};
-    this.files.emit(fileHandle);
+    let fileHandle:FileHandle;
+    // const file = evt.dataTransfer.files[0];
+    // const url= this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
+    // fileHandle ={file,url};
+    // this.files.emit(fileHandle);
   }
 }

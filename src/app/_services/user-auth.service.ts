@@ -9,10 +9,16 @@ export class UserAuthService {
   public setRoles(roles:[]){
     localStorage.setItem("roles",JSON.stringify(roles));
   }
-  public getRoles(): []{
-   // @ts-ignore
-    return  JSON.parse(localStorage.getItem("roles"));
+  public getRoles(): any[] {
+    const roles = localStorage.getItem("roles");
+    if (roles) {
+      return JSON.parse(roles);
+    } else {
+      return [];
+    }
   }
+
+
   public setToken(jwtToken:string){
     localStorage.setItem('jwtToken',jwtToken);
   }

@@ -21,8 +21,10 @@
         </li>
 
       </ul>
-      <button *ngIf="! isLoggedIn()" type="button" class="btn btn-outline-success" routerLink="/login">Login</button>
-      <button *ngIf="isLoggedIn()" type="button" class="btn btn-outline-danger" routerLink="/logout" (click)="logout()">Logout</button>
+      <button (click)="check()" *ngIf="!isLoggedIn()" type="button" class="btn btn-outline-success"  routerLink="/login">Login</button>
+      <ng-template #logCheck>
+        <button *ngIf="isLoggedIn()"  type="button" class="btn btn-outline-danger" routerLink="/logout" (click)="logout()">Logout</button>
+      </ng-template>
 
     </div>
   </div>
