@@ -5,6 +5,7 @@ import {ProductService} from "../_services/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FileHandle} from "../_model/file-handle.model";
 import {DomSanitizer} from "@angular/platform-browser";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-add-new-product',
@@ -12,7 +13,9 @@ import {DomSanitizer} from "@angular/platform-browser";
   styleUrls: ['./add-new-product.component.css']
 })
 export class AddNewProductComponent implements OnInit{
+  isNewProduct :boolean =true ;
   product:Product={
+    productId:null,
     productName :"",
     productDescription:"",
     productCategory:"",
@@ -21,9 +24,14 @@ export class AddNewProductComponent implements OnInit{
     productImages:[]
 
 }
-  constructor(private productService:ProductService,private sanitizer:DomSanitizer) {
+  constructor(private productService:ProductService,private sanitizer:DomSanitizer,
+              private activatedRoute:ActivatedRoute) {
   }
   ngOnInit(): void {
+   this.product= this.activatedRoute.snapshot.data['product']
+    if(this.product && this.product.productId){
+      this.isNewProduct=false;
+    }
   }
   addProduct(productForm:NgForm){
     const productFormData = this.prepareFormData(this.product);
@@ -53,22 +61,24 @@ export class AddNewProductComponent implements OnInit{
     return formData;
   }
 
-  // onFileSelected(event: Event | null) {
-  //   if(event.target.files){
-  //    const file = event.target.files[0];
-  //
-  //    const fileHandle: FileHandle ={
-  //      file:file,
-  //      url: this.sanitizer.bypassSecurityTrustUrl(
-  //        window.URL.createObjectURL(file)
-  //      )
-  //    }
-  //    this.product.productImages.push(fileHandle);
-  //   }
-  //   else {
-  //     alert("wrong file")
-  //   }
-  // }
+  onFileSelected(event: Event | null) {
+    //@ts-ignore
+    if(event.target.files){
+      //@ts-ignore
+      const file = event.target.files[0];
+
+     const fileHandle: FileHandle ={
+       file:file,
+       url: this.sanitizer.bypassSecurityTrustUrl(
+         window.URL.createObjectURL(file)
+       )
+     }
+     this.product.productImages.push(fileHandle);
+    }
+    else {
+      alert("wrong file")
+    }
+  }
 
   removeImages(i: number) {
     this.product.productImages.splice(i,1)

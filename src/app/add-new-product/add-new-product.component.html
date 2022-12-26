@@ -25,25 +25,27 @@
         </mat-form-field>
 
         <div align="end">
-        <button mat-raised-button color="primary" style="margin-right: 3px "type="submit">Save</button>
+        <button *ngIf="isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Save</button>
+          <button *ngIf="!isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Update</button>
+
         <button mat-raised-button color="accent">Clear</button>
       </div>
         </form>
       </div>
       <div class="col-6">
-<!--        <div>-->
-<!--          <div class="dropzone"-->
-<!--               appDrag-->
-<!--               (files)="fileDropped($event)"-->
-<!--          >-->
-<!--              <div class="text-wrapper">-->
-<!--                <div class="centered">-->
-<!--                drag and drop your file or-->
-<!--                  <a (click)="selectFile.click()" class="browse-btn" > browse a file</a>-->
-<!--              </div>-->
-<!--              </div>-->
-<!--          </div>-->
-<!--          <input type="file" style="display: none;" value="select" #selectFile (change)="onFileSelected($event)">-->
+        <div>
+          <div class="dropzone"
+               appDrag
+               (files)="fileDropped($event)"
+          >
+              <div class="text-wrapper">
+                <div class="centered">
+                drag and drop your file or
+                  <a (click)="selectFile.click()" class="browse-btn" > browse a file</a>
+              </div>
+              </div>
+          </div>
+          <input type="file" style="display: none;" value="select" #selectFile (change)="onFileSelected($event)">
       </div>
         <div class="mt-5">
           <div class="row">
@@ -61,4 +63,4 @@
       </div>
     </div>
   </div>
-<!--</div>-->
+</div>

@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {UserAuthService} from "../_services/user-auth.service";
 import {Router} from "@angular/router";
-import {UserService} from "../_services/user.service";
+import {ProductService} from "../_services/product.service";
+import {CartService} from "../_services/cart.service";
+import {Cart} from "../_model/cart.model";
 
 @Component({
   selector: 'app-header',
@@ -9,16 +11,30 @@ import {UserService} from "../_services/user.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-
+  public showMe:boolean =false;
+  public searchTerm !:string;
   // isLoggedInFlag : boolean = false ;
+  loggedInUserId  =this.userAuthService.getUserId();
+  loggedInUserName =this.userAuthService.getUserName();
+  cartByUserId ?:Cart ;
+  searchResults: any[] = [];
+
+  public totalItem:number=0;
+  @HostListener('document:mousedown', ['$event'])
+  onGlobalClick(event:any): void {
+    if (event.showMe)
+      this.showMe = false;
+  }
   constructor(
     private userAuthService:UserAuthService,
     private router:Router,
+    public productService:ProductService,
+    public cartService:CartService,
 
-    public userService:UserService
-  ) {
+) {
   }
   ngOnInit(): void {
+    this.getCartByUserid();
   }
   public isLoggedIn() {
     return this.userAuthService.isLoggedIn();
@@ -26,7 +42,10 @@ export class HeaderComponent implements OnInit{
 
   public logout(){
     this.userAuthService.clear();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
+  }
+  public updateProfile(){
+    this.router.navigate(['/updateProfile'])
   }
   public isAdmin(){
    return  this.userAuthService.isAdmin();
@@ -37,4 +56,37 @@ export class HeaderComponent implements OnInit{
   public check(){
     console.log("working")
   }
+  clearSearchResults() {
+    this.searchResults = [];
+  }
+
+  search(event:any){
+    this.searchTerm=(event.target as HTMLInputElement).value;
+    if (this.searchTerm.length>2) {
+      this.productService.search.next(this.searchTerm);
+    }else {
+      this.clearSearchResults();
+    }
+  }
+
+  public getCartByUserid() {
+    if (this.loggedInUserId!=0) {
+      this.cartService.getCart(this.loggedInUserId).subscribe(
+        (response: Cart) => {
+          this.cartByUserId = response;
+          if (this.cartByUserId && this.cartByUserId.cartItem) {
+            // console.log(this.cartByUserId)
+            // console.log(this.cartByUserId.cartItem[0]?.product)
+            this.totalItem = response.cartItem.length;
+          }
+        }, (error) => {
+          console.log(error)
+        }
+      )
+    }
+  }
+  toggleMenu(){
+    this.showMe = !this.showMe;
+  }
+
 }

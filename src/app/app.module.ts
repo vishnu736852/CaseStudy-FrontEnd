@@ -25,6 +25,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { DragDirective } from './drag.directive';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import {MatTableModule} from '@angular/material/table';
+import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
+import {MatListModule} from "@angular/material/list";
+import { FilterPipe } from './_search/filter.pipe';
+import { CartComponent } from './cart/cart.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { RegisterComponent } from './register/register.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -38,23 +47,32 @@ import {MatTableModule} from '@angular/material/table';
     ForbiddenComponent,
     AddNewProductComponent,
     DragDirective,
-    ShowProductDetailsComponent
+    ShowProductDetailsComponent,
+    ShowProductImagesDialogComponent,
+    ProductViewDetailsComponent,
+    FilterPipe,
+    CartComponent,
+    BuyProductComponent,
+    RegisterComponent,
+    EditProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatGridListModule,
-    MatTableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatGridListModule,
+        MatTableModule,
+        MatDialogModule,
+        MatListModule
+    ],
   providers: [
     AuthGuard,
     {
@@ -64,6 +82,6 @@ import {MatTableModule} from '@angular/material/table';
     },
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

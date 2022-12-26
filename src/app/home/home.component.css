@@ -1,0 +1,32 @@
+mat-grid-tile{
+  border:1px solid lightgray;
+  border-radius: 5px;
+}
+.image-container{
+  position: relative;
+  height: 300px;
+}
+.product{
+  transition: 0.3s ease-in-out ;
+}
+.product:hover{
+  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
+.home-page-product-image{
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.form-control{
+  border-radius: 3px;
+  width: 600px;
+  margin-left: 60px;
+}

@@ -1,5 +1,35 @@
 <div class="container mt-5">
-  <div class="card text-center" style="padding:20px;">
-    <h1>Welcome Home</h1>
+  <div>
+    <button  class="btn btn-outline-primary" (click)="filter('')" routerLink="/" style="margin-right: 3px">All Products</button>
+    <button class="btn btn-outline-primary" (click)="filter('Electronics')" style="margin-right: 3px">Electronics</button>
+    <button class="btn btn-outline-primary" (click)="filter('Clothing')" style="margin-right: 3px">Clothing</button>
+    <button class="btn btn-outline-primary" (click)="filter('Books')" style="margin-right: 3px">Books</button>
+    <button class="btn btn-outline-primary" (click)="filter('Jewellery')" style="margin-right: 3px">Jewellery</button>
+    <button class="btn btn-outline-primary" (click)="filter('Appliances')" style="margin-right: 3px">Appliances</button>
   </div>
+  <div class="pt-5">
+  <mat-grid-list cols="4" rowHeight="3:5" gutterSize="10" >
+    <mat-grid-tile *ngFor="let p of filterCategory | filter:searchKey:'productName'">
+      <div class="row p-5 product " (click)="showProductDetails(p.productId)">
+        <div class="image-container">
+      <img class="home-page-product-image" [src]="p.productImages[0].url">
+      </div>
+        <div class="mt-3 ">
+        <p><b>{{p.productName}}</b></p>
+      </div>
+<!--      <div class="mt-2">-->
+<!--        <p style="white-space: inherit;height: 40px;width:288px;overflow: hidden;text-overflow: ellipsis;">{{p.productDescription}}</p>-->
+<!--      </div>-->
+      <div class="mt-2">
+      <p>₹{{p.productPrice}}</p>
+    </div>
+        <div class="mt-2">
+          <button mat-raised-button color="warn" type="button" (click)="showProductDetails(p.productId)">
+            View Product
+          </button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 </div>

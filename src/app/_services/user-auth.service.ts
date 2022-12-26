@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,28 @@ export class UserAuthService {
   public getToken(){
     return localStorage.getItem('jwtToken');
   }
+  public setUserId(userId:number){
+    localStorage.setItem('userId',JSON.stringify(userId))
+  }
+  public getUserId(){
+   const userId= localStorage.getItem('userId')
+    if (userId) {
+      return JSON.parse(userId);
+    } else {
+      return [];
+    }
+  }
+  public setUserName(userName:string){
+    localStorage.setItem('userName',userName)
+  }
+  public getUserName(){
+    let userName= localStorage.getItem('userName')
+    if (userName) {
+      return (userName);
+    } else {
+      return ["hi"];
+    }
+  }
   public clear(){
     localStorage.clear();
   }
@@ -39,4 +62,6 @@ export class UserAuthService {
     const roles: any[] = this.getRoles();
     return roles[0].roleName === 'User';
   }
+
+
 }
