@@ -1,0 +1,108 @@
+<section class="h-100 bgcolor">
+  <div class="container py-1">
+    <div class="row d-flex justify-content-center my-1">
+      <div class="col-md-10">
+        <div class="card mb-4 rounded">
+          <div class="card-header py-3">
+            <h5 class="mb-0">My Orders</h5>
+          </div>
+          <div *ngFor="let order of getOrdersByUserIdList" class="col-12 px-2 py-2">
+            <p>Order Id : {{order.orderId}}</p>
+            <p>Order Status :{{order.status}}</p>
+            <h6> Cart Items :</h6>
+            <div class="container-fluid" *ngFor="let cartItem of order.orderItems">
+              <div class="row">
+<!--                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">-->
+<!--                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">-->
+<!--                    <img [src]="cartItem.product.imageUrl" width="100px" height="100px"/>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <p><strong>{{cartItem.product.productName}}</strong></p>
+                  <p>Category : {{cartItem.product.productCategory}}</p>
+                  <p>Brand : {{cartItem.product.productDescription}}</p>
+                  <p>Individual Price: {{cartItem.product.productPrice | currency : 'INR'}}</p>
+                  <p>quantity: {{cartItem.quantity }}</p>
+                  <p>Item Price:{{cartItem.quantity*cartItem.product.productPrice | currency : 'INR'}} </p>
+                </div>
+              </div>
+              <!--              <img [src]="cartItem.product.imageUrl" width="75px" height="75px"/>-->
+              <!--              <p><strong>{{cartItem.product.itemName}}</strong></p>&ndash;&gt;-->
+              <!--              <p>Category : {{cartItem.product.category}}</p>-->
+              <!--              <p>Brand : {{cartItem.product.brand}}</p>-->
+              <!--              <p>Individual Price: {{cartItem.product.price | currency : 'INR'}}</p>-->
+              <!--              <p>Total cart Item price : {{cartItem.product.price * cartItem.quantity | currency : 'INR'}}</p>-->
+              <!--              <p>Quantity : {{cartItem?.quantity}}</p>-->
+              <hr class="my-3"/>
+            </div>
+            <hr class="font-weight-bold my-4">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<ng-container>-->
+<!--  <div class="container">-->
+<!--    <div class="card">-->
+<!--    <table class="table table-responsive">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        Details-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        Status-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let order of getOrdersByUserIdList">-->
+<!--        <td>-->
+<!--          {{order.orderId}}-->
+<!--          <div class="card">-->
+<!--            <table class="table table-responsive">-->
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                <th>Sr.No</th>-->
+<!--                <th>Product Name</th>-->
+<!--                &lt;!&ndash;<th>Product Image</th>&ndash;&gt;-->
+<!--                <th>Description</th>-->
+<!--                <th>Price</th>-->
+<!--                <th>Quantity</th>-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--              <tr >-->
+<!--                <td>{{1}}</td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+<!--  </div>-->
+
+<!--</ng-container>-->

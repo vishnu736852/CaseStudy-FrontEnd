@@ -1,0 +1,67 @@
+<ng-container *ngIf="cartByUserId?.cartItem?.length!=0" >
+  <div class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-responsive">
+          <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Product Name</th>
+<!--            <th>Product Image</th>-->
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+<!--            <th>Total</th>-->
+            <th *ngIf="activatingDeleteButton">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cartItem of cartByUserId?.cartItem; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{cartItem.product.productName}}</td>
+<!--            <td><img style="width: 120px;" [src]="cartItem.product.productImages[0].url"></td>-->
+            <td style="width: 25%;">{{cartItem.product.productDescription}}</td>
+            <th style="width: 12%;">{{cartItem.product.productPrice}}</th>
+            <td style="width: 12%;">
+              <div>
+                <button class="m-2 quantity-change-button" *ngIf="cartItem.quantity > 1" (click)="decreaseQuantity(cartItem.product.productId)">-</button>
+                  <button *ngIf="cartItem.quantity == 1"  class="btn">
+                    <i (click)="removeItem(cartItem.product.productId)" class="fas fa-trash-alt"></i>
+                  </button>
+                <span class="m-2 ">{{ cartItem.quantity }}</span>
+                <button class="m-2 quantity-change-button" (click)="increaseQuantity(cartItem.product.productId)">+</button>
+                <button *ngIf="cartItem.quantity > 1"  class="btn">
+                  <i (click)="removeItem(cartItem.product.productId)" class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1"></td>
+            <td><button routerLink="/" class="btn btn-info">Shop More</button></td>
+            <td><button class="btn btn-success" (click)="buyProduct()">Checkout</button></td>
+            <td><strong>Grand Total : {{grandTotalProducts}}</strong></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="cartByUserId?.cartItem?.length==0">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">My Cart</h5>
+    </div>
+    <div class="center">
+      <h4>Your cart is empty!</h4>
+      <h6>Add item to it now</h6>
+      <div>
+      <button routerLink="/" class="btn btn-primary">Shop Now</button>
+    </div>
+      <div class="mt-5">
+      <button routerLink="/buyProduct"  class="btn btn-primary">Previous Orders</button>
+    </div>
+    </div>
+  </div>
+</ng-container>
