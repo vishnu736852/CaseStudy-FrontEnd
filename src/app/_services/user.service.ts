@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserAuthService} from "./user-auth.service";
 import {Observable} from "rxjs";
 import {User} from "../_model/user.model";
+import {SignUpUser} from "../_model/signUpUser.model";
 
 @Injectable({
   providedIn: 'root'

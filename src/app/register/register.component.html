@@ -1,64 +1,147 @@
+<!--<div class="container mt-5">-->
+<!--  <div class="card "style="padding: 20px ">-->
+<!--    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>UserName</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="userName"-->
+<!--                 id="userName"-->
+<!--                 placeholder="UserName">-->
+<!--         </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Email</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="email"-->
+<!--                 id="email"-->
+<!--                 placeholder="email">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>UserPassword</mat-label>-->
+<!--          <input matInput-->
+<!--                 type="password"-->
+<!--                 ngModel-->
+<!--                 name="userPassword"-->
+<!--                 id="userPassword"-->
+<!--                 placeholder="UserPassword">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Street</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="street"-->
+<!--                 id="street"-->
+<!--                 placeholder="street">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>City</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="city"-->
+<!--                 id="city"-->
+<!--                 placeholder="city">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>State</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="state"-->
+<!--                 id="state"-->
+<!--                 placeholder="state">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>PinCode</mat-label>-->
+<!--          <input matInput-->
+<!--                 ngModel-->
+<!--                 name="pinCode"-->
+<!--                 id="pinCode"-->
+<!--                 placeholder="pinCode">-->
+<!--        </mat-form-field>-->
+<!--      <div class="text-center">-->
+<!--        <button mat-stroked-button color="primary" type="submit" class="w-20" >Register</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="container mt-5">
   <div class="card "style="padding: 20px ">
-    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>UserName</mat-label>
-          <input matInput
-                 ngModel
-                 name="userName"
-                 id="userName"
-                 placeholder="UserName">
-         </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Email</mat-label>
-          <input matInput
-                 ngModel
-                 name="email"
-                 id="email"
-                 placeholder="email">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>UserPassword</mat-label>
-          <input matInput
-                 ngModel
-                 name="userPassword"
-                 id="userPassword"
-                 placeholder="UserPassword">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Street</mat-label>
-          <input matInput
-                 ngModel
-                 name="street"
-                 id="street"
-                 placeholder="street">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>City</mat-label>
-          <input matInput
-                 ngModel
-                 name="city"
-                 id="city"
-                 placeholder="city">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>State</mat-label>
-          <input matInput
-                 ngModel
-                 name="state"
-                 id="state"
-                 placeholder="state">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>PinCode</mat-label>
-          <input matInput
-                 ngModel
-                 name="pinCode"
-                 id="pinCode"
-                 placeholder="pinCode">
-        </mat-form-field>
+    <form  [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="form-group">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>UserName</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="userName"
+               [ngClass]="{'is-invalid':submitted }"
+               id="userName"
+               placeholder="UserName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="email"
+               [ngClass]="{'is-invalid':submitted }"
+               id="email"
+               placeholder="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>UserPassword</mat-label>
+        <input matInput
+               class="form-control"
+               type="password"
+               ngModel
+               formControlName="userPassword"
+               [ngClass]="{'is-invalid':submitted }"
+               id="userPassword"
+               placeholder="UserPassword">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Street</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="street"
+               [ngClass]="{'is-invalid':submitted }"
+               id="street"
+               placeholder="street">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>City</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="city"
+               [ngClass]="{'is-invalid':submitted }"
+               id="city"
+               placeholder="city">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>State</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="state"
+               [ngClass]="{'is-invalid':submitted }"
+               id="state"
+               placeholder="state">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>PinCode</mat-label>
+        <input matInput
+               class="form-control"
+               ngModel
+               formControlName="pinCode"
+               [ngClass]="{'is-invalid':submitted }"
+               id="pinCode"
+               placeholder="pinCode">
+      </mat-form-field>
       <div class="text-center">
-        <button mat-stroked-button color="primary" type="submit" class="w-20" >Register</button>
+        <button mat-stroked-button color="primary" type="submit" class="w-20" [disabled]="registerForm.invalid">Register</button>
+      </div>
       </div>
     </form>
   </div>

@@ -42,11 +42,18 @@ export class HeaderComponent implements OnInit{
 
   public logout(){
     this.userAuthService.clear();
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+    window.location.href='./'
   }
   public updateProfile(){
-    this.router.navigate(['/updateProfile'])
+    // this.router.navigate(['/updateProfile'])
+    window.location.href='./updateProfile'
+
   }
+  public orderHistory(){
+    window.location.href='./buyProduct'
+  }
+
   public isAdmin(){
    return  this.userAuthService.isAdmin();
   }

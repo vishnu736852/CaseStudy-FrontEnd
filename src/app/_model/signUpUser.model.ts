@@ -8,5 +8,5 @@ export interface SignUpUser{
   street:string,
   city:string,
   state:string,
-  pinCode:number
+  pinCode:string
 }

@@ -34,6 +34,8 @@ import { CartComponent } from './cart/cart.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
 import { RegisterComponent } from './register/register.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -71,7 +73,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
         MatGridListModule,
         MatTableModule,
         MatDialogModule,
-        MatListModule
+        MatListModule,
+      ReactiveFormsModule
     ],
   providers: [
     AuthGuard,

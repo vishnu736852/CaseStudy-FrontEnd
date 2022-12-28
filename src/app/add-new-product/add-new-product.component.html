@@ -1,35 +1,103 @@
+<!--<div class="container mt-5" xmlns="http://www.w3.org/1999/html">-->
+<!--  <div class="card p-2">-->
+<!--    <div class="row">-->
+<!--      <div class="col-6">-->
+<!--        <form #productForm ="ngForm" (ngSubmit)="addProduct(productForm)">-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Product Name</mat-label>-->
+<!--          <input matInput placeholder="Product Name" required="true" minlength="2" [(ngModel)]="product.productName" name="productName">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100" >-->
+<!--          <mat-label>Price</mat-label>-->
+<!--          <input matInput placeholder="Price" required minlength="2" [(ngModel)]="product.productPrice" name="productPrice">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100" >-->
+<!--          <mat-label>Product Description</mat-label>-->
+<!--          <input matInput placeholder="Product Description" required minlength="2" [(ngModel)]="product.productDescription" name="productDescription">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100" >-->
+<!--          <mat-label>Category</mat-label>-->
+<!--          <input matInput placeholder="Category" required minlength="2" [(ngModel)]="product.productCategory" name="productCategory">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Sub-Category</mat-label>-->
+<!--          <input matInput placeholder="Sub-Category" required minlength="2"  [(ngModel)]="product.productSubCategory" name="productSubCategory">-->
+<!--        </mat-form-field>-->
+
+<!--        <div align="end">-->
+<!--        <button *ngIf="isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Save</button>-->
+<!--          <button *ngIf="!isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Update</button>-->
+
+<!--        <button mat-raised-button color="accent">Clear</button>-->
+<!--      </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--      <div class="col-6">-->
+<!--        <div>-->
+<!--          <div class="dropzone"-->
+<!--               appDrag-->
+<!--               (files)="fileDropped($event)"-->
+<!--          >-->
+<!--              <div class="text-wrapper">-->
+<!--                <div class="centered">-->
+<!--                drag and drop your file or-->
+<!--                  <a (click)="selectFile.click()" class="browse-btn" > browse a file</a>-->
+<!--              </div>-->
+<!--              </div>-->
+<!--          </div>-->
+<!--          <input type="file" style="display: none;" value="select" #selectFile (change)="onFileSelected($event)">-->
+<!--      </div>-->
+<!--        <div class="mt-5">-->
+<!--          <div class="row">-->
+<!--            <mat-grid-list cols="3" rowHeight="1:1">-->
+<!--              <mat-grid-tile *ngFor="let file of product.productImages; let i=index;">-->
+<!--                <div style="position: relative">-->
+<!--                  <span class="btn-remove-image" (click)="removeImages(i)">x</span>-->
+<!--                  <img [src]="file.url" width="100px"height="100px">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--            </mat-grid-list>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="container mt-5" xmlns="http://www.w3.org/1999/html">
   <div class="card p-2">
     <div class="row">
       <div class="col-6">
-        <form #productForm ="ngForm" (ngSubmit)="addProduct(productForm)">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Product Name</mat-label>
-          <input matInput placeholder="Product Name" [(ngModel)]="product.productName" name="productName">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100" >
-          <mat-label>Price</mat-label>
-          <input matInput placeholder="Price" [(ngModel)]="product.productPrice" name="productPrice">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100" >
-          <mat-label>Product Description</mat-label>
-          <input matInput placeholder="Product Description" [(ngModel)]="product.productDescription" name="productDescription">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100" >
-          <mat-label>Category</mat-label>
-          <input matInput placeholder="Category" [(ngModel)]="product.productCategory" name="productCategory">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Sub-Category</mat-label>
-          <input matInput placeholder="Sub-Category"  [(ngModel)]="product.productSubCategory" name="productSubCategory">
-        </mat-form-field>
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Product Name</mat-label>
+            <input matInput placeholder="Product Name"  [(ngModel)]="product.productName" formControlName="productName" [ngClass]="{'is-invalid':submitted }"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100" >
+            <mat-label>Price</mat-label>
+            <input matInput placeholder="Price"  [(ngModel)]="product.productPrice" formControlName="productPrice" [ngClass]="{'is-invalid':submitted }"
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100" >
+            <mat-label>Product Description</mat-label>
+            <input matInput placeholder="Product Description"  [(ngModel)]="product.productDescription" formControlName="productDescription" [ngClass]="{'is-invalid':submitted }" >
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100" >
+            <mat-label>Category</mat-label>
+            <input matInput placeholder="Category" [(ngModel)]="product.productCategory" formControlName="productCategory" [ngClass]="{'is-invalid':submitted }">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Sub-Category</mat-label>
+            <input matInput placeholder="Sub-Category"   [(ngModel)]="product.productSubCategory" formControlName="productSubCategory" [ngClass]="{'is-invalid':submitted }">
+          </mat-form-field>
 
-        <div align="end">
-        <button *ngIf="isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Save</button>
-          <button *ngIf="!isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit">Update</button>
+          <div align="end">
+            <button *ngIf="isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit" [disabled]="productForm.invalid">Save</button>
+            <button *ngIf="!isNewProduct" mat-raised-button color="primary" style="margin-right: 3px "type="submit"  [disabled]="productForm.invalid">Update</button>
 
-        <button mat-raised-button color="accent">Clear</button>
-      </div>
+            <button mat-raised-button color="accent">Clear</button>
+          </div>
         </form>
       </div>
       <div class="col-6">
@@ -38,15 +106,15 @@
                appDrag
                (files)="fileDropped($event)"
           >
-              <div class="text-wrapper">
-                <div class="centered">
+            <div class="text-wrapper">
+              <div class="centered">
                 drag and drop your file or
-                  <a (click)="selectFile.click()" class="browse-btn" > browse a file</a>
+                <a (click)="selectFile.click()" class="browse-btn" > browse a file</a>
               </div>
-              </div>
+            </div>
           </div>
           <input type="file" style="display: none;" value="select" #selectFile (change)="onFileSelected($event)">
-      </div>
+        </div>
         <div class="mt-5">
           <div class="row">
             <mat-grid-list cols="3" rowHeight="1:1">

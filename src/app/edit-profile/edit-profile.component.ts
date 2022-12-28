@@ -3,7 +3,8 @@ import {User} from "../_model/user.model";
 import {UserAuthService} from "../_services/user-auth.service";
 import {UserService} from "../_services/user.service";
 import {Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
+import {SignUpUser} from "../_model/signUpUser.model";
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,6 +13,9 @@ import {NgForm} from "@angular/forms";
 })
 export class EditProfileComponent implements OnInit{
   loggedInUserId : number = this.userAuthService.getUserId();
+  updateForm !:FormGroup;
+  submitted =false ;
+
   user : User ={
     userId :this.loggedInUserId,
     userName:"",
@@ -35,10 +39,19 @@ export class EditProfileComponent implements OnInit{
     pinCode:""
   }
 
-  constructor(private userAuthService : UserAuthService,private userService:UserService,private router:Router) {
+  constructor(private userAuthService : UserAuthService,private userService:UserService,private router:Router,private fb : FormBuilder) {
   }
   ngOnInit() {
     this.getUserById();
+    // this.updateForm = this.fb.group({
+    //   userName:['',Validators.required],
+    //   email:['',Validators.required],
+    //   userPassword:['',Validators.required],
+    //   street:['',Validators.required],
+    //   city:['',Validators.required],
+    //   state:['',Validators.required],
+    //   pinCode:['',Validators.required]
+    // })
   }
 
   getUserById(){
@@ -52,7 +65,7 @@ export class EditProfileComponent implements OnInit{
   }
 
   updateUserDetails(updateForm:NgForm){
-    this.userService.updateUserProfile(updateForm).subscribe(
+    this.userService.updateUserProfile(updateForm.value).subscribe(
       (resp)=>{
         this.updatedUser=resp ;
         console.log(this.updatedUser)
@@ -63,4 +76,18 @@ export class EditProfileComponent implements OnInit{
       }
     )
   }
+  // updateUserDetails(){
+  //   this.submitted =true;
+  //   this.userService.updateUserProfile(this.updateForm.value).subscribe(
+  //     (resp)=>{
+  //       this.updatedUser=resp ;
+  //       console.log(this.updatedUser)
+  //       alert("user details updated")
+  //     },error => {
+  //       console.log(error)
+  //       alert("user details not updated")
+  //     }
+  //   )
+  // }
+
 }

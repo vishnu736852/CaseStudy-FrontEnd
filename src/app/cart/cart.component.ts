@@ -92,13 +92,15 @@ console.log(            this.cartByUserId?.cartItem[i].product
  //    this.activatingDeleteButton;
  // }
 
- removeItem(productId:any){
+ removeItem(productId:null){
+    console.log(productId)
     this.cartService.removeItem(this.loggedInUserId,productId).subscribe(
       (resp:String)=>{
         alert( "item removed");
         console.log(resp);
         window.location.reload();
    },error => {
+        alert( "item removed");
         window.location.reload();
         console.log(error)
       }

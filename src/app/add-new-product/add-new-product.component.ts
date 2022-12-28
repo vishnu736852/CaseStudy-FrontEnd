@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../_model/product.model";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {ProductService} from "../_services/product.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FileHandle} from "../_model/file-handle.model";
@@ -14,6 +14,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AddNewProductComponent implements OnInit{
   isNewProduct :boolean =true ;
+  productForm !: FormGroup;
+  submitted=false ;
   product:Product={
     productId:null,
     productName :"",
@@ -25,25 +27,49 @@ export class AddNewProductComponent implements OnInit{
 
 }
   constructor(private productService:ProductService,private sanitizer:DomSanitizer,
-              private activatedRoute:ActivatedRoute) {
+              private activatedRoute:ActivatedRoute,private fb : FormBuilder) {
   }
   ngOnInit(): void {
    this.product= this.activatedRoute.snapshot.data['product']
     if(this.product && this.product.productId){
       this.isNewProduct=false;
     }
+    this.productForm = this.fb.group({
+      productName:['',Validators.required],
+      productPrice:['',Validators.required],
+      productDescription:['',Validators.required],
+      productCategory:['',Validators.required],
+      productSubCategory:['',Validators.required]
+    })
   }
-  addProduct(productForm:NgForm){
-    const productFormData = this.prepareFormData(this.product);
+
+
+  // addProduct(productForm:NgForm){
+  //   const productFormData = this.prepareFormData(this.product);
+  //     this.productService.addProduct(productFormData).subscribe(
+  //       (response:Product)=>{
+  //             productForm.reset()
+  //             this.product.productImages = []
+  //       },
+  //       (error:HttpErrorResponse)=>{
+  //         console.log(error);
+  //       }
+  //     )
+  // }
+  addProduct(){
+    this.submitted = true;
+    if(this.productForm.valid) {
+      const productFormData = this.prepareFormData(this.product);
       this.productService.addProduct(productFormData).subscribe(
-        (response:Product)=>{
-              productForm.reset()
-              this.product.productImages = []
+        (response: Product) => {
+          this.productForm.reset()
+          this.product.productImages = []
         },
-        (error:HttpErrorResponse)=>{
+        (error: HttpErrorResponse) => {
           console.log(error);
         }
       )
+    }
   }
   prepareFormData(product :Product):FormData{
     const formData = new FormData();

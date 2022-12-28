@@ -21,7 +21,7 @@ export class CartService {
     return this.httpClient.get<Cart>(this.PATH_OF_API + "/cart/"+userId+"/getCart")
   }
 
-  removeItem(userId:any,productId:any):Observable<String>{
+  removeItem(userId:number,productId:any):Observable<String>{
     return this.httpClient.get<string>(this.PATH_OF_API +"/cart/"+userId+"/remove/"+productId)
   }
   increaseQuantity(userId:any,productId:any):Observable<CartItem>{

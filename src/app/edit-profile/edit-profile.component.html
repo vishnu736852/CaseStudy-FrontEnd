@@ -33,6 +33,7 @@
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>UserPassword</mat-label>
         <input matInput
+               type="password"
                #userPassword
                [(ngModel)]="user.userPassword"
                name="userPassword"
@@ -73,7 +74,7 @@
                [(ngModel)]="user.pinCode"
                name="pinCode"
                id="pinCode"
-               placeholder="pinode">
+               placeholder="pinCode">
       </mat-form-field>
       <div class="text-center">
         <button mat-stroked-button color="primary" type="submit" class="w-20" >Update</button>
@@ -81,3 +82,97 @@
     </form>
   </div>
 </div>
+
+<!--<div class="container mt-5">-->
+<!--  <div class="card "style="padding: 20px ">-->
+<!--    <form  [formGroup]="updateForm" (ngSubmit)="updateUserDetails()">-->
+<!--      <div class="form-group">-->
+<!--&lt;!&ndash;        <mat-form-field appearance="outline" class="w-100">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  <mat-label>UserName</mat-label>&ndash;&gt;-->
+<!--&lt;!&ndash;                  <input matInput&ndash;&gt;-->
+<!--&lt;!&ndash;                         readonly&ndash;&gt;-->
+<!--&lt;!&ndash;                         formControlName="userId"&ndash;&gt;-->
+<!--&lt;!&ndash;                         [(ngModel)]="user.userId"&ndash;&gt;-->
+<!--&lt;!&ndash;                         name="userId"&ndash;&gt;-->
+<!--&lt;!&ndash;                         id="userId"&ndash;&gt;-->
+<!--&lt;!&ndash;                         placeholder="UserName">&ndash;&gt;-->
+<!--&lt;!&ndash;                </mat-form-field>&ndash;&gt;-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>UserName</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="userName"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="userName"-->
+<!--                 placeholder="UserName">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Email</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="email"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="email"-->
+<!--                 placeholder="email">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>UserPassword</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 type="password"-->
+<!--                 ngModel-->
+<!--                 formControlName="userPassword"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="userPassword"-->
+<!--                 placeholder="UserPassword">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>Street</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="street"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="street"-->
+<!--                 placeholder="street">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>City</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="city"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="city"-->
+<!--                 placeholder="city">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>State</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="state"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="state"-->
+<!--                 placeholder="state">-->
+<!--        </mat-form-field>-->
+<!--        <mat-form-field appearance="outline" class="w-100">-->
+<!--          <mat-label>PinCode</mat-label>-->
+<!--          <input matInput-->
+<!--                 class="form-control"-->
+<!--                 ngModel-->
+<!--                 formControlName="pinCode"-->
+<!--                 [ngClass]="{'is-invalid':submitted }"-->
+<!--                 id="pinCode"-->
+<!--                 placeholder="pinCode">-->
+<!--        </mat-form-field>-->
+<!--        <div class="text-center">-->
+<!--          <button mat-stroked-button color="primary" type="submit" class="w-20">Update</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+

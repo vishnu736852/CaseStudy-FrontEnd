@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Product} from "../_model/product.model";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
+import {PriceSorting} from "../_model/priceSorting.model";
 
 
 @Injectable({
@@ -9,6 +10,8 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ProductService {
   public search = new BehaviorSubject<string>("");
+  PATH_OF_API ="http://localhost:9090";
+
 
 
   constructor(private httpClient:HttpClient) { }
@@ -23,6 +26,9 @@ export class ProductService {
   }
   public getProductDetailsById(productId :number){
     return this.httpClient.get<Product>("http://localhost:9090/products/getById/"+productId)
+  }
+  public getSortedProductByPrice(priceData : any):Observable<Product[]>{
+    return this.httpClient.post<Product[]>(this.PATH_OF_API + "/products/getSortedProductByPrice",priceData);
   }
 
 }
